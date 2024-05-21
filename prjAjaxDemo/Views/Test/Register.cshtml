@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>API連接到api的register</h1>
+<div id="iddiv1"></div>
+
+@section Styles
+{
+    <style>
+    </style>
+}
+
+@section Scripts
+{
+    <script>
+        const div = document.getElementById("iddiv1");
+        (async () => {
+            const url = '@Url.Content("~/Api/Register")?name=ABC&age=10';
+            const response = await fetch(url);
+            const data = await response.text();
+            div.innerHTML = data;
+        
+        
+        })();
+
+
+   </script>
+}
