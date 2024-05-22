@@ -26,11 +26,9 @@
 
 
         (async () => {
-            const response = await fetch('@Url.Content("~/api/cityone")')
-            const data = await response.json()
-            const citys = data.map((city, num) => {
-                return `<option value="${city}">${city}</option>`
-        })
+            const response = await fetch('@Url.Content("~/api/city")');
+            const data = await response.json();
+            const citys = data.map(city => `<option value="${city}">${city}</option>`);
             select1.innerHTML += `<option >請選擇...</option>`;
             select1.innerHTML += citys.join("");
         })();
@@ -39,13 +37,14 @@
             select2.innerHTML = "";
             select3.innerHTML = "";
             select3.innerHTML += `<option >請選擇...</option>`;
+            //備註: 選擇的值 語法:
             // console.log(select.selectedIndex);
             // console.log(select.options[select.selectedIndex].value);
             // console.log(select.options[select.selectedIndex].text);
 
             (async () => {
             const pickedcity = select1.options[select1.selectedIndex].value;
-                const url = '@Url.Content("~/api/citytwo")?pick=' + `${pickedcity}`;
+                const url = `@Url.Content("~/api/District")?city=${pickedcity}`;
                 const response = await fetch(url)
                 const data = await response.json()
                 const cityss = data.map((b) => {
@@ -63,18 +62,13 @@
             (async () => {
                 const y = select2.options[select2.selectedIndex].value;
                 console.log(y);
-                const url = '@Url.Content("~/api/citythree")?pick=' + `${y}`;
+                const url = `@Url.Content("~/api/road")?district=${y}`;
                 console.log(url);
                 const response = await fetch(url)
                 const data = await response.json()
-                const citysss = data.map((c) => {
-                    return `<option value="${c}">${c}</option>`
-                    console.log(`<option value="${c}">${c}</option>`);
-                })
-
+                const citysss = data.map(c=>`<option value="${c}">${c}</option>`)
                 select3.innerHTML += `<option >請選擇...</option>`;
                 select3.innerHTML += citysss.join("");
-                console.log(select3);
             })();
 
         }

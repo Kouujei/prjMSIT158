@@ -9,6 +9,10 @@ namespace prjAjaxDemo.Controllers
             return View();
         }
 
+        public IActionResult Check()
+        {
+            return View();
+        }
 
     }
 }

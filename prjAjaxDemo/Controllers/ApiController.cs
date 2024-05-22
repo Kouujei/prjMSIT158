@@ -55,22 +55,20 @@ namespace prjAjaxDemo.Controllers
             return Content($"{name}您好,{age}歲!!");
         }
 
-        public IActionResult cityone()
+        public IActionResult City()
         {
             var ct = _context.Addresses.Select(x => x.City).Distinct();
             return Json(ct);
         }
-        public IActionResult citytwo(string pick)
+        public IActionResult District(string city)
         {
-            var ct = _context.Addresses.Where(x => x.City==pick);
-            var tt = ct.Select(x => x.SiteId).Distinct();
-            return Json(tt);
+            var ct = _context.Addresses.Where(x => x.City== city).Select(x => x.SiteId).Distinct();
+            return Json(ct);
         }
-        public IActionResult citythree(string pick)
+        public IActionResult Road(string district)
         {
-            var ct = _context.Addresses.Where(x => x.SiteId ==pick);
-            var zt = ct.Select(x => x.Road);
-            return Json(zt);
+            var ct = _context.Addresses.Where(x => x.SiteId == district).Select(x => x.Road);;
+            return Json(ct);
         }
     }
 }
