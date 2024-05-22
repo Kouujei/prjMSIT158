@@ -6,11 +6,11 @@ using System.Composition.Hosting.Core;
 
 namespace prjAjaxDemo.Controllers
 {
-    public class TestController : Controller
+    public class SchoolController : Controller
     {
-        private readonly ILogger<TestController> _logger;
+        private readonly ILogger<SchoolController> _logger;
         private readonly MyDBContext _context;
-        public TestController(ILogger<TestController> logger, MyDBContext context)
+        public SchoolController(ILogger<SchoolController> logger, MyDBContext context)
         {
             _logger = logger;
             _context = context;
@@ -35,21 +35,19 @@ namespace prjAjaxDemo.Controllers
         }
         public IActionResult First()
         {
-            
             return View();
-
         }
 		public IActionResult Address()
 		{
-
 			return View();
-
 		}
         public IActionResult Register()
         {
-
             return View();
-
+        }
+        public IActionResult Spots()
+        {
+            return View();
         }
     }
 }
