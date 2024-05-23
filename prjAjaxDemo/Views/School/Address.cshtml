@@ -109,23 +109,25 @@
             const response = await fetch('@Url.Content("~/api/city")');
             const data = await response.json();
             const citys = data.map(city => `<option value="${city}">${city}</option>`);
-            select4.innerHTML += `<option >請選擇...</option>`;
-            select4.innerHTML += citys.join("");
+            select4.innerHTML = citys.join("");
             loadDistrict();
             loadRoad();
         })();
 
         const loadDistrict = async () => {
             (async () => {
-                const pickeddistrict = select5.options[select5.selectedIndex].value;
-                const url = `@Url.Content("~/api/road")?district=${pickeddistrict}`;
+                const pickedCity = select4.options[select4.selectedIndex].value;
+                const url = `@Url.Content("~/api/District")?city=${pickedCity}`;
                 const response = await fetch(url)
                 const data = await response.json()
-                const citysss = data.map(c => `<option value="${c}">${c}</option>`)
-                select6.innerHTML += `<option >請選擇...</option>`;
-                select6.innerHTML += citysss.join("");
-                const labeltxtsec = pickeddistrict.substring(3, 6);
-                label1.textContent = `${pickeddistrict}`;
+                const citysss = data.map(c => {
+                    const shortc = c.substring(3,6)
+                    return `<option value="${c}">${shortc}</option>`
+                })
+                select5.innerHTML = citysss.join("");
+                const pickedDistrict = select5.options[select5.selectedIndex].value;
+                // const labeltxtsec = pickeddistrict.substring(3, 6);
+                label2.textContent = `${pickedDistrict}`;
             })();
         }
         const loadRoad = async () => {

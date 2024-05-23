@@ -49,5 +49,9 @@ namespace prjAjaxDemo.Controllers
         {
             return View();
         }
+        public IActionResult CallAPI()
+        {
+            return View();
+        }
     }
 }
